@@ -57,7 +57,7 @@ define glassfish::create_domain (
   $domain_template     = $glassfish::domain_template,
   $domain_user         = $glassfish::user,
   $enable_secure_admin = $glassfish::enable_secure_admin,
-  $ensure              = present,
+  $ensure              = 'present',
   $portbase            = $glassfish::portbase,
   $service_name        = $glassfish::service_name,
   $start_domain        = $glassfish::start_domain) {
@@ -107,7 +107,7 @@ define glassfish::create_domain (
   }
 
   # Run Create_domain resources before Create_cluster and Create_node resources
-  Create_domain <| |> -> Create_cluster <| |>
-  Create_domain <| |> -> Create_node <| |>
+  Glassfish::Create_domain <| |> -> Glassfish::Create_cluster <| |>
+  Glassfish::Create_domain <| |> -> Glassfish::Create_node <| |>
 
 }
